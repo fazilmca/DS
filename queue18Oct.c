@@ -1,5 +1,4 @@
 #include<stdio.h>
-
 #define SIZE 5
 
 int queue[SIZE];
@@ -12,7 +11,6 @@ int isFull() {
 int isEmpty() {
     return (front == -1 || front > rear);
 }
-
 // Function to enqueue to the queue
 void enqueue(int value) {
     if (isFull()) {
@@ -34,7 +32,7 @@ int dequeue() {
     } else {
         int value = queue[front];
         front++;
-        if (front > rear) { 
+        if (front == rear) { 
             front = rear = -1;
         }
         printf("%d dequeued from queue.\n", value);
@@ -55,10 +53,8 @@ void traverse() {
     }
 }
 
-
 int main() {
     int choice, value;
-
     while (1) {
         printf("\nQueue Operations:\n");
         printf("1. Enqueue\n");
