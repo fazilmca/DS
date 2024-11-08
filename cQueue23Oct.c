@@ -1,30 +1,23 @@
 #include<stdio.h>
 #define SIZE 5
 
-int circular_queue[SIZE];
+int queue[SIZE];
 int front =-1 ,rear =-1;
-int value , next;
-void nQuee(){
-	next = (rear % ( SIZE - 1)) + 1;
-	
-	if (front==-1 && rear==-1)
-	{
-		printf("\n add your element : ");
-		scanf("%d",&value);
-		front=0;
-		rear=0;
-		circular_queue[rear]=value;
-	}
-	
-	else if (next != front){
-     		printf("\n add your element : ");
-     		scanf("%d",&n);	
-		rear=next;
-		circular_queue[rear]=value;
-	}
-	else{
-	        printf("\n circular quee is full");
-	}
+
+int isFull(){
+        return (rear == SIZE - 1);
+}
+void enqueue(int value) {
+    if (isFull()) {
+        printf("Queue is full! Cannot enqueue %d.\n", value);
+    } else {
+        if (front == -1) {
+            front = 0;
+        }
+        rear=rear%SIZE +1;
+        queue[rear] = value;
+        printf("%d enqueued to queue.\n", value);
+    }
 }
 
 int main() {
