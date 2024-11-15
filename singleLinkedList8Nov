@@ -76,16 +76,66 @@ void traversal(){
         printf("\n");
 }
 void deleteAtFront() {
+        if (header == NULL) {
+                printf("List is empty\n");
+                return;
+        }
+
+        struct Node *temp = header;
+        header = header->link;
+        free(temp);
+}
+void deleteAtEnd(){
+        if (header == NULL) {
+                printf("List is empty\n");
+                return;
+        }
+
+        if (header->link == NULL) {
+                free(header);
+        header = NULL;
+        return;
+        }
+
+        struct Node *ptr = header;
+        while (ptr->link->link != NULL) {
+                ptr = ptr->link;
+        }
+        
+        free(ptr->link);
+        ptr->link = NULL;
+}
+void deleteAtAny(int position) {
     if (header == NULL) {
         printf("List is empty\n");
         return;
     }
 
-    struct Node *temp = header;
-    header = header->link;
+    if (position < 1) {
+        printf("Invalid position\n");
+        return;
+    }
+
+    if (position == 1) {
+        struct Node *temp = header;
+        header = header->link;
+        free(temp);
+        return;
+    }
+
+    struct Node *ptr = header;
+    for (int i = 1; i < position - 1; i++) {
+        if (ptr == NULL) {
+            printf("Position out of range\n");
+            return;
+        }
+        ptr = ptr->link;
+    }
+
+    struct Node *temp = ptr->link;
+    ptr->link = temp->link;
     free(temp);
 }
-
 int main(){
         struct Node *node;
         insertAtEnd(50);
@@ -95,6 +145,9 @@ int main(){
         traversal();
         deleteAtFront();
         traversal();
+        deleteAtEnd();
+        traversal();
+        deleteAtAny(2);
+        traversal();
         return(0);
 }
-   
