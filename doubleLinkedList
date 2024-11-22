@@ -1,0 +1,44 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct Node{
+        int data;
+        struct Node * link;
+        struct Node * prev;
+};
+struct Node *header =NULL;
+struct Node *createNode(int data){
+        struct Node *newnode;
+        newnode = malloc(sizeof(struct Node));
+        newnode ->data= data;
+        newnode ->link=NULL;
+        newnode ->prev=NULL;
+        return newnode;
+}
+void insertAtFront(int data){
+        struct Node *newnode = createNode(data);
+        if (header == NULL ){
+                
+                newnode = createNode(data);
+                header = newnode;
+        }else{
+                
+                newnode -> link = header;
+                header-> prev = newnode;
+                header = newnode;
+        }
+}
+void traversal(){
+        struct Node *ptr;
+        ptr = header ;
+        while(ptr !=NULL){
+                printf("%d \t",ptr -> data);
+                ptr = ptr->link;
+        }
+}
+
+int main(){
+        insertAtFront(2);
+        insertAtFront(4);
+        insertAtEnd(3);
+        traversal();
+}
