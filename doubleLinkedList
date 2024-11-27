@@ -27,6 +27,24 @@ void insertAtFront(int data){
                 header = newnode;
         }
 }
+void insertAtEnd(int data) {
+    struct Node* newnode = createNode(data);
+
+    if (header == NULL) {
+        // If the list is empty, insert as the first node
+        header = newnode;
+    } else {
+        // Traverse to the last node
+        struct Node* ptr = header;
+        while (ptr->link != NULL) {
+            ptr = ptr->link;
+        }
+
+        // Insert the new node at the end
+        ptr->link = newnode;
+        newnode->prev = ptr;
+    }
+}
 void traversal(){
         struct Node *ptr;
         ptr = header ;
@@ -35,10 +53,27 @@ void traversal(){
                 ptr = ptr->link;
         }
 }
-
+void deleteAtEnd(){
+        struct Node *ptr = header ;
+        struct Node *ptr1 = NULL;
+        // Traverse to the last node
+        while(ptr->link!=NULL){
+                ptr1 = ptr;
+                ptr = ptr->link;
+        }
+        // Update the previous node's link
+        ptr1->link = NULL;
+        free(ptr);
+}
 int main(){
         insertAtFront(2);
         insertAtFront(4);
-        insertAtEnd(3);
+        insertAtFront(5);
+        traversal();
+        printf("\n");
+        deleteAtEnd();
+        traversal();
+        printf("\n");
+        insertAtEnd(6);
         traversal();
 }
