@@ -5,6 +5,8 @@ Roll No:- 32
 Name:- Muhammed Fazil C
 ———————————————————————
 
+PROGRAM CODE:-
+
 #include <stdio.h>
 #include <stdlib.h>
 
