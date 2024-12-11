@@ -1,0 +1,92 @@
+#include <stdio.h>
+
+void union_sets(char set1[], char set2[], char union_set[]) {
+    int i, j, k;
+    for (i = 0; i < 5; i++) {
+        union_set[i] = set1[i];
+    }
+    for (i = 0; i < 5; i++) {
+        for (j = 0; j < 5; j++) {
+            if (set2[i] != union_set[j]) {
+                union_set[k++] = set2[i];
+            }
+        }
+    }
+}
+
+void intersection_sets(char set1[], char set2[], char intersection_set[]) {
+    int i, j, k = 0;
+    for (i = 0; i < 5; i++) {
+        for (j = 0; j < 5; j++) {
+            if (set1[i] == set2[j]) {
+                intersection_set[k++] = set1[i];
+            }
+        }
+    }
+}
+
+
+
+void set_difference(char set1[], char set2[], char difference_set[]) {
+    int i, j, k = 0;
+    for (i = 0; i < 5; i++) {
+        for (j = 0; j < 5; j++) {
+            if (set1[i] != set2[j]) {
+                difference_set[k++] = set1[i];
+            }
+        }
+    }
+}
+
+int main() {
+    char alphabet[26] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+    char set1[5], set2[5], union_set[10], intersection_set[5], complement_set[26], difference_set[5];
+    int i;
+   
+    printf("Enter 5 alphabets: ");
+        // Read 5 characters from the user
+        for (i = 0; i < 5; i++) {
+                scanf(" %c", &set1[i]);
+        }
+        printf("You entered: ");
+                // Print the entered alphabets
+        for (i = 0; i < 5; i++) {
+                printf("%c ", set1[i]);
+        }
+        printf("\nEnter 5 alphabets: ");
+        // Read 5 characters from the user
+        for (i = 0; i < 5; i++) {
+                scanf(" %c", &set2[i]);
+        }
+        printf("You entered: ");
+                // Print the entered alphabets
+        for (i = 0; i < 5; i++) {
+                printf("%c ", set2[i]);
+        }
+
+    // Calculate and print union
+    union_sets(set1, set2, union_set);
+    printf("\nUnion: ");
+    for (i = 0; i < 10; i++) {
+        printf("%c ", union_set[i]);
+    }
+
+    // Calculate and print intersection
+    intersection_sets(set1, set2, intersection_set);
+    printf("\nIntersection: ");
+    for (i = 0; i < 5; i++) {
+        printf("%c ", intersection_set[i]);
+    }
+
+    // Calculate and print complement of set1
+    
+
+    // Calculate and print difference of set1 - set2
+    set_difference(set1, set2, difference_set);
+    printf("\nDifference (set1 - set2): ");
+    for (i = 0; i < 5; i++) {
+        printf("%c ", difference_set[i]);
+    }
+
+    return 0;
+}
