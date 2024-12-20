@@ -1,8 +1,8 @@
 Program 1:
 Write a C program to implement Set data structure using Bit Vector representation and perform operations such Union, Intersection, Set Complement and Set Difference.
 
-Rol No: 48
-Name: SAIFUDEEN
+Rol No: 32
+Name: Muhammed Fazil C
 
 Program Code:
 
